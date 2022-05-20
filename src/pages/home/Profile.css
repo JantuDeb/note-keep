@@ -1,0 +1,52 @@
+.profile-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.profile {
+    max-width: 20rem;
+    width: 100%;
+    margin: clamp(0.2rem, 0.4rem, 1rem);
+}
+
+.profile-badge {
+    width: fit-content;
+}
+
+.btn-edit {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0rem;
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.2rem;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.items-end {
+    align-items: flex-end;
+}
+
+.transparent {
+    background-color: transparent;
+}
+
+.address-box {
+    width: 100%;
+}
+
+.address-type {
+    width: fit-content;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--fu-gray-200);
+    color: var(--fu-gray-600);
+    font-weight: bold;
+}
+
+.address-form div .input-group {
+    width: 100%;
+}
