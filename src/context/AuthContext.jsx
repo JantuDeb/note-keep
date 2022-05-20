@@ -66,11 +66,13 @@ const AuthProvider = ({ children }) => {
         type: ERROR,
         payload: { error: "Name and email is required" },
       });
+
     authDispatch({ type: LOADING, payload: { loading: true } });
     const formData = new FormData();
     formData.append("email", email);
     formData.append("name", name);
     if (file) formData.append("photo", file);
+    console.log(formData);
     try {
       const { data } = await axios.post(
         "/user/update_user_details",
@@ -83,6 +85,7 @@ const AuthProvider = ({ children }) => {
         }
       );
       if (data.success) {
+        console.log(data.user);
         authDispatch({ type: LOGIN, payload: { user: data.user } });
       }
     } catch (error) {
