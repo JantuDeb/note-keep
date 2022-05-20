@@ -9,7 +9,7 @@ import { useAuth } from "../../context/AuthContext";
 export const LogIn = () => {
   const [user, setUser] = useState({
     email: "user@ionvu.note",
-    password: "ionvu@123",
+    password: "123456",
   });
   const { email, password } = user;
 

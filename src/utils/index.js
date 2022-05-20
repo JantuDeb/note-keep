@@ -25,7 +25,10 @@ export const colors = [
 ];
 
 export const axiosConfig = {
-  baseURL: "http://localhost:4000/api/v1",
+  baseURL:
+    window.location.protocol === "http:"
+      ? "http://localhost:4000/api/v1"
+      : "https://notes--api.herokuapp.com/api/v1/",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -42,7 +45,6 @@ export const initialState = {
     medium: false,
   },
 };
-
 
 export const filterReducer = (state, action) => {
   const { type, payload } = action;
@@ -74,13 +76,9 @@ export const getFilteredNotes = (state, notes) => {
 
 export const getSortedNotes = (state, notes) => {
   if (state.sortBy.name === "old") {
-    return notes.sort(
-      (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-    );
+    return notes.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
   } else if (state.sortBy.name === "new") {
-    return notes.sort(
-      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    );
+    return notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   }
   return notes;
 };
