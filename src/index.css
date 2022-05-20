@@ -1,0 +1,274 @@
+@import url("https://flamingoui.netlify.app/components/main.css");
+
+:root {
+  --fu-primary: #ffcd21;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-primary-text);
+}
+
+.nav-item {
+  border-top-right-radius: 4rem;
+  border-bottom-right-radius: 4rem;
+  display: block;
+}
+
+.nav-item.active {
+  background-color: var(--fu-success);
+}
+
+.nav-item:hover {
+  background-color: var(--fu-gray-200);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+
+.grow {
+  flex-grow: 1;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 25rem;
+}
+
+.transparent-input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.transparent-input:focus {
+  outline: none;
+  border: none;
+}
+
+.transparent-input,
+.transparent-input::placeholder {
+  color: rgb(27, 23, 23);
+}
+
+.input-category {
+  border: transparent;
+  outline: transparent;
+}
+
+.input-category:focus {
+  border: transparent;
+  outline: transparent;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.white {
+  background-color: #fff;
+}
+
+.blue {
+  background-color: #60a5fa;
+}
+
+.indigo {
+  background-color: #818cf8;
+}
+
+.purple {
+  background-color: #c084fc;
+}
+
+.pink {
+  background-color: #f0abfc;
+}
+
+.red {
+  background-color: #f87171;
+}
+
+.orange {
+  background-color: #fb923c;
+}
+
+.yellow {
+  background-color: #fde68a;
+}
+
+.green {
+  background-color: #4ade80;
+}
+
+.teal {
+  background-color: #5eead4;
+}
+
+.cyan {
+  background-color: #22d3ee;
+}
+
+.color-box {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  margin: 0.2rem;
+  cursor: pointer;
+}
+
+.color-box:hover {
+  border: var(--fu-dark) 2px solid;
+}
+
+.category-container {
+  position: relative;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 10;
+  width: 15rem;
+  top: 2rem;
+  background-color: #fff;
+  box-shadow: var(--fu-shadow-gray);
+  border-radius: 0.5rem;
+}
+
+.expand {
+  display: flex;
+}
+
+.collapse {
+  display: none;
+}
+
+.cursor-auto {
+  cursor: auto;
+}
+
+.side-bar {
+  flex-shrink: 0;
+  flex-basis: 16rem;
+}
+
+.note {
+  width: 100%;
+  max-width: 25rem;
+}
+
+.icon-action {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.icon-action:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.bg-semi-transparent {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.colors-container {
+  position: relative;
+}
+
+.colors-bar {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.edit-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.radius-top-md {
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+}
+
+.category-list {
+  width: 100%;
+  max-width: 25rem;
+}
+
+.btn-menu {
+  display: none;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-bar {
+  display: block;
+}
+
+.mobile-navbar {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 14rem;
+  background-color: white;
+  height: 100vh;
+  box-shadow: var(--fu-shadow-gray);
+}
+
+.mobile-navbar nav {
+  flex-grow: 1;
+}
+
+@media screen and (max-width:586px) {
+  .btn-menu {
+    display: flex;
+  }
+
+  .side-bar {
+    display: none;
+  }
+
+  .mobile-navbar {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+.gap-2 {
+  gap: 1rem;
+}
+
+.signup-main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-container, .signup-container{
+  max-width: 20rem;
+  width: 100%;
+}
+
+.signup-container{
+  padding: 1rem;
+}
