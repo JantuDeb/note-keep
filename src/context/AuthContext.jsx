@@ -9,7 +9,7 @@ import {
   SIGNUP,
   ERROR,
   LOADING,
-} from "./auth-context";
+} from "./auth-reducer";
 import axios from "axios";
 import { axiosConfig } from "../utils";
 
@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const signUp = async (user) => {
     try {
-      const { data } = await axios.post("/signup", user,axiosConfig);
+      const { data } = await axios.post("/signup", user, axiosConfig);
       if (data.success) {
         authDispatch({ type: SIGNUP, payload: data.user });
         localStorage.setItem("user", JSON.stringify(data.user));
@@ -34,7 +34,11 @@ const AuthProvider = ({ children }) => {
 
   const logIn = async ({ email, password }) => {
     try {
-      const { data } = await axios.post("/login", { email, password },axiosConfig);
+      const { data } = await axios.post(
+        "/login",
+        { email, password },
+        axiosConfig
+      );
       if (data.success) {
         authDispatch({ type: LOGIN, payload: data.user });
         localStorage.setItem("user", JSON.stringify(data.user));
@@ -48,45 +52,33 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     try {
-      const { data } = await axios.get("/logout",axiosConfig);
+      const { data } = await axios.get("/logout", axiosConfig);
       if (data.success) {
         authDispatch({ type: LOGOUT });
         localStorage.removeItem("user");
         localStorage.removeItem("token");
-        navigate("/", { replace: true });
+        navigate("/login", { replace: true });
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const savePhoto = async ({ name, email, file }) => {
-    if (!name || !email)
-      return authDispatch({
-        type: ERROR,
-        payload: { error: "Name and email is required" },
-      });
-
+  const savePhoto = async ({ file }) => {
     authDispatch({ type: LOADING, payload: { loading: true } });
     const formData = new FormData();
-    formData.append("email", email);
-    formData.append("name", name);
     if (file) formData.append("photo", file);
     console.log(formData);
     try {
-      const { data } = await axios.post(
-        "/user/update_user_details",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          ...axiosConfig
-        }
-      );
+      const { data } = await axios.post("/user/update_user_details", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        ...axiosConfig,
+      });
       if (data.success) {
-        console.log(data.user);
-        authDispatch({ type: LOGIN, payload: { user: data.user } });
+        localStorage.setItem("user", JSON.stringify(data.user));
+        authDispatch({ type: LOGIN, payload: data.user });
       }
     } catch (error) {
       authDispatch({ type: ERROR, payload: { error: error.message } });

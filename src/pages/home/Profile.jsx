@@ -11,20 +11,12 @@ export const Profile = () => {
     authState: { user, loading },
     savePhoto,
   } = useAuth();
-  const [userData, setUserData] = useState({
-    email: user?.name ||"",
-    name: user?.email||"",
-  });
+
 
   const [showModal, setShowModal] = useState(false);
   const [file, setFile] = useState(false);
-  const [imgURL, setImgURL] = useState(""||user?.photo?.secure_url);
-  const [edinting, setEditing] = useState(false);
+  const [imgURL, setImgURL] = useState("" || user?.photo?.secure_url);
 
-  const { email, name } = userData;
-  const inputChangeHandler = (e) => {
-    setUserData((user) => ({ ...user, [e.target.name]: e.target.value }));
-  };
 
   const editProfilePhoto = () => {
     setImgURL(user.photo?.secure_url);
@@ -42,14 +34,10 @@ export const Profile = () => {
 
   const saveClickHandler = async () => {
     console.log("clicked save", file);
-    await savePhoto({ email, name, file });
+    await savePhoto({file });
     setShowModal(false);
   };
 
-  const updateHandler = async () => {
-    if (!email || !name) setUserData({ email: user?.email, name: user?.name });
-    setEditing((v) => !v);
-  };
 
   return (
     <div className="profile-container">
@@ -69,39 +57,20 @@ export const Profile = () => {
           </button>
         </div>
 
-        <form className="signup-container radius-md py-1">
+        <div className="signup-container radius-md py-1">
           <Input
             type="email"
             name="email"
-            value={email || user?.email}
-            inputChangeHandler={inputChangeHandler}
+            value={user?.email}
             placeholder="Email address"
-            disable={!edinting}
+            disable={true}
           />
           <Input
             name="name"
-            value={name || user?.name}
-            inputChangeHandler={inputChangeHandler}
+            value={user?.name}
             placeholder="Full name"
-            disable={!edinting}
+            disable={true}
           />
-        </form>
-        <div
-          className={`flex w-full ${
-            edinting ? "justify-between" : "justify-end"
-          } `}
-        >
-          <button onClick={updateHandler} className="btn-red m-1 radius-sm">
-            {edinting ? "Cancel" : "Update details"}
-          </button>
-          {edinting && (
-            <Button
-              text="Save"
-              loading={loading}
-              clickHandler={saveClickHandler}
-              btnStyle="btn-red m-1 radius-sm"
-            />
-          )}
         </div>
         <Modal show={showModal}>
           <div className="bg-white">

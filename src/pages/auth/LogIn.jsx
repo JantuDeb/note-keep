@@ -1,6 +1,4 @@
 import { useState } from "react";
-// import { Link } from "react-router-dom";
-// import { useAuth } from "../../context/auth/AuthContext";
 import Button from "../../component/loader/Button";
 import Input from "../../component/Input";
 import { Link } from "react-router-dom";

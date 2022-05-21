@@ -14,7 +14,7 @@ body {
 .nav-item {
   border-top-right-radius: 4rem;
   border-bottom-right-radius: 4rem;
-  display: block;
+  display: flex;
 }
 
 .nav-item.active {
